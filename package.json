@@ -6,11 +6,11 @@
   "repository": "https://github.com/duplojs/duplojs-swagger",
   "license": "ISC",
   "keywords": [],
-  "types": "./types/scripts/.ts",
+  "types": "./types/scripts/index.d.ts",
   "exports": {
     "default": {
-      "import": "./dist/.mjs",
-      "require": "./dist/.cjs"
+      "import": "./dist/swagger.mjs",
+      "require": "./dist/swagger.cjs"
     }
   },
   "files": [
@@ -21,11 +21,15 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "nodemon --exec 'ts-node test'",
+    "dev": "nodemon --exec 'ts-node test --swagger'",
     "build": "rollup --config && npx tsc"
   },
   "dependencies": {
-    "@duplojs/duplojs": ">=0.13.20"
+    "@anatine/zod-openapi": "^2.2.1",
+    "@duplojs/duplojs": ">=0.13.23",
+    "@duplojs/editor-tools": "^0.1.0",
+    "@types/swagger-schema-official": "^2.0.25",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@duplojs/worker-testing": "^0.1.4",

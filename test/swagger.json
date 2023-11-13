@@ -1,0 +1,143 @@
+{
+    "tags": [
+        {
+            "name": "user",
+            "description": "Route to iteract with user."
+        }
+    ],
+    "schemes": [
+        "test",
+        "lolo"
+    ],
+    "info": {
+        "title": "swagger",
+        "version": "3.0.0"
+    },
+    "swagger": "2.0",
+    "paths": {
+        "/user/name": {
+            "get": {
+                "responses": {},
+                "parameters": [],
+                "tags": [],
+                "schemes": [],
+                "description": "pass par une route abstraite",
+                "deprecated": false
+            }
+        },
+        "/user/name/2": {
+            "get": {
+                "responses": {},
+                "parameters": [],
+                "tags": [],
+                "schemes": [],
+                "description": "",
+                "deprecated": false
+            }
+        },
+        "/user": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "body",
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "enum": [
+                                    "math",
+                                    "gab"
+                                ]
+                            },
+                            "age": {
+                                "type": "number",
+                                "example": 34
+                            }
+                        },
+                        "required": [
+                            "name"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "schemes": [],
+                "description": "add checker isOdd",
+                "deprecated": false
+            }
+        },
+        "/user/{name}": {
+            "get": {
+                "responses": {},
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "name",
+                        "type": "string",
+                        "enum": [
+                            "math",
+                            "gab"
+                        ],
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "schemes": [
+                    "test"
+                ],
+                "description": "Get user by name\nUser is so strong\nsuper process\nverif if input is odd",
+                "deprecated": false
+            }
+        },
+        "/posts": {
+            "get": {
+                "responses": {},
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "type": "number",
+                        "example": 15
+                    }
+                ],
+                "tags": [],
+                "schemes": [],
+                "description": "",
+                "deprecated": false
+            }
+        },
+        "/user/{id}": {
+            "delete": {
+                "responses": {},
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "number",
+                        "example": 0,
+                        "required": true
+                    },
+                    {
+                        "in": "header",
+                        "name": "isAdmin",
+                        "type": "boolean"
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "schemes": [],
+                "description": "",
+                "deprecated": true
+            }
+        }
+    }
+}
