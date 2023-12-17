@@ -79,13 +79,3 @@ export const mapStepSwaggerDescriptor = <
 		return duplosesDescriptors[v.name];
 	})
 	.flat(1);
-
-export const mapAccessSwaggerDescriptor = <
-	duploses extends Route | AbstractRoute
->(duploses: duploses, duplosesDescriptors: Record<string, SwaggerDescriptor[]>) => {
-	if(!duploses.access || typeof duploses.access === "function") return [];
-	const descStep = duploses.descs.find(v => v.type === "access")?.descStep;
-	// check if desc of step has SwaggerIgnoreInheritDescriptor to don't Inherit SwaggerDescriptor
-	if(descStep && descStep.find(v => v instanceof SwaggerIgnoreInheritDescriptor)) return []; 
-	return duplosesDescriptors[duploses.access.name];
-};
