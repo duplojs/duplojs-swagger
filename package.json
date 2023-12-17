@@ -21,17 +21,19 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "nodemon --exec 'ts-node test --swagger'",
-    "build": "rollup --config && npx tsc"
+    "dev": "nodemon --exec 'npm run test:speed'",
+    "build": "rollup --config && npx tsc",
+	"test": "ts-node test --swagger",
+	"test:speed": "ts-node --transpiler sucrase/ts-node-plugin test --speed --swagger"
   },
   "dependencies": {
     "@anatine/zod-openapi": "^2.2.1",
-    "@duplojs/duplojs": ">=0.13.23",
-    "@duplojs/editor-tools": "^0.1.0",
-    "@types/swagger-schema-official": "^2.0.25",
-    "zod": "^3.22.4"
+    "@duplojs/duplojs": ">=0.13.28",
+    "@duplojs/editor-tools": "^0.1.3",
+    "@types/swagger-schema-official": "^2.0.25"
   },
   "devDependencies": {
+	"sucrase": "^3.34.0",
     "@duplojs/worker-testing": "^0.1.4",
     "@rollup/plugin-json": "^6.0.1",
     "@types/node": "^18.15.11",

@@ -7,7 +7,7 @@ import packageJson from "../package.json";
 import indexHtml from "./index.html";
 import {readFileSync, writeFileSync} from "fs";
 import {SwaggerDeprecated, SwaggerDescription, SwaggerDescriptor, SwaggerIgnore, SwaggerIgnoreInheritDescriptor, SwaggerOperation, SwaggerParameter, SwaggerResponses, SwaggerSchemes, SwaggerTag} from "./descriptor";
-import {extractZodToParameter, getZodFromExtract, mapAccessSwaggerDescriptor, mapStepSwaggerDescriptor} from "./utility";
+import {extractZodToParameter, getZodFromExtract, mapStepSwaggerDescriptor} from "./utility";
 
 export * from "./descriptor";
 
@@ -103,7 +103,6 @@ export default function duploSwagger(
 			abstractDescriptors[abstract.name].push(
 				...mapStepSwaggerDescriptor(abstract, "process", processDescriptors),
 				...mapStepSwaggerDescriptor(abstract, "checker", checkerDescriptors),
-				...mapAccessSwaggerDescriptor(abstract, processDescriptors),
 				//Inherit SwaggerDescriptor abstract
 				...(() => {
 					if(abstract.parentAbstractRoute || abstract.mergeAbstractRoute){
@@ -134,7 +133,6 @@ export default function duploSwagger(
 			descriptors.push(
 				...mapStepSwaggerDescriptor(route, "process", processDescriptors),
 				...mapStepSwaggerDescriptor(route, "checker", checkerDescriptors),
-				...mapAccessSwaggerDescriptor(route, processDescriptors),
 				//Inherit SwaggerDescriptor abstract
 				...(() => {
 					if(route.abstractRoute){
