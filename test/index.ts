@@ -1,26 +1,29 @@
 import Duplo, {zod} from "@duplojs/duplojs";
 import duploSwagger, {SwaggerDeprecated, SwaggerDescription, SwaggerIgnore, SwaggerIgnoreInheritDescriptor, SwaggerResponses, SwaggerSchemes, SwaggerTag} from "../scripts";
+import duploWhatHasSent, {IHaveSentThis} from "@duplojs/what-was-sent";
 
-const duplo = Duplo({port: 1506, host: "0.0.0.0"});
+const duplo = Duplo({port: 1506, host: "0.0.0.0", environment: "DEV"});
+
+duplo.use(duploWhatHasSent);
+
 duplo.use(duploSwagger, {
 	outputFile: "test/swagger.json",
 	swaggerSpec: {
 		tags: [{name: "user", description: "Route to iteract with user."}],
-		schemes: ["test", "lolo"],
+		schemes: ["http"],
 	},
 });
 
-const isOdd = duplo.createChecker(
+const isOdd = duplo
+.createChecker(
 	"isOdd", 
-	{
-		handler(input: number, output, options){
-			if(input % 2 == 1) return output("odd", input);
-			else return output("notOdd", input);
-		},
-		outputInfo: ["odd", "notOdd"],
-	}, 
 	new SwaggerDescription("verif if input is odd")
-);
+)
+.handler((input: number, output, options) => {
+	if(input % 2 == 1) return output("odd", input);
+	else return output("notOdd", input);
+})
+.build();
 
 const process1 = duplo.createProcess("process1")
 .check(
@@ -33,6 +36,11 @@ const process1 = duplo.createProcess("process1")
 .build([], new SwaggerDescription("super process"));
 
 const Abstract1 = duplo.declareAbstractRoute("abstract1")
+.extract({
+	query: {
+		test: zod.string()
+	}
+})
 .build(undefined, new SwaggerDescription("pass par une route abstraite"));
 
 Abstract1(undefined)
@@ -58,11 +66,14 @@ duplo.declareRoute("POST", "/user")
 	},
 	new SwaggerIgnoreInheritDescriptor(),
 	new SwaggerDescription("add checker isOdd"),
+	new IHaveSentThis(400, "test")
 )
 .handler(
 	() => {},
 	new SwaggerTag("user"),
-	new SwaggerResponses({code: 200, description: ""}),
+	new SwaggerResponses({code: 200, description: "test"}),
+	new IHaveSentThis(200, "user.get", zod.object({test: zod.string()})),
+	new IHaveSentThis(200, "user.get.total", zod.object({test1: zod.string(), test2: zod.number()}))
 );
 
 duplo.declareRoute("GET", "/titi")

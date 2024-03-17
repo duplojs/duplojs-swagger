@@ -1,11 +1,12 @@
 # duplojs-swagger
+[![NPM version](https://img.shields.io/npm/v/@duplojs/swagger)](https://www.npmjs.com/package/@duplojs/swagger)
 
 ## Instalation
 ```
 npm i @duplojs/swagger
 ```
 
-## Utilisation
+## Implémentation
 ```ts
 import Duplo, {zod} from "@duplojs/duplojs";
 import duploSwagger, {SwaggerDescription, SwaggerResponses, SwaggerTag, SwaggerIgnoreInheritDescriptor} from "@duplojs/swagger";
@@ -57,4 +58,30 @@ duplo.declareRoute("GET", "/user/{id}")
 );
 
 duplo.launch();
+```
+
+## Implémentation globales
+
+```ts
+duplo.use(duploSwagger, {
+    ...
+    globals: true
+});
+```
+
+tsconfig.json
+```json
+{
+  "compilerOptions": {
+    ...
+    "types": [
+		"@duplojs/swagger/globals"
+	],
+  }
+}
+```
+
+## Génération open-api json
+```
+(node | tsx | ts-node) index.ts --swagger [--only-generate]
 ```
