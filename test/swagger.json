@@ -6,8 +6,7 @@
         }
     ],
     "schemes": [
-        "test",
-        "lolo"
+        "http"
     ],
     "info": {
         "title": "swagger",
@@ -18,7 +17,13 @@
         "/user/name": {
             "get": {
                 "responses": {},
-                "parameters": [],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "in": "query",
+                        "name": "test"
+                    }
+                ],
                 "tags": [],
                 "schemes": [],
                 "description": "pass par une route abstraite",
@@ -35,16 +40,111 @@
                 "deprecated": false
             }
         },
+        "/user/{name}": {
+            "get": {
+                "responses": {},
+                "parameters": [
+                    {
+                        "type": "string",
+                        "enum": [
+                            "math",
+                            "gab"
+                        ],
+                        "in": "path",
+                        "name": "name"
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "schemes": [
+                    "test"
+                ],
+                "description": "verif if input is odd\nsuper process\nGet user by name\nUser is so strong",
+                "deprecated": false
+            }
+        },
+        "/posts": {
+            "get": {
+                "responses": {},
+                "parameters": [
+                    {
+                        "type": "number",
+                        "example": 15,
+                        "in": "query",
+                        "name": "page"
+                    }
+                ],
+                "tags": [],
+                "schemes": [],
+                "description": "",
+                "deprecated": false
+            }
+        },
         "/user": {
             "post": {
                 "responses": {
                     "200": {
-                        "description": ""
+                        "code": 200,
+                        "description": "test",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "test": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "test"
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "test1": {
+                                            "type": "string"
+                                        },
+                                        "test2": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "test1",
+                                        "test2"
+                                    ]
+                                }
+                            ]
+                        },
+                        "info": [
+                            "user.get.total"
+                        ],
+                        "examples": {},
+                        "headers": {
+                            "info": {
+                                "type": "string",
+                                "description": "user.get | user.get.total"
+                            }
+                        }
+                    },
+                    "400": {
+                        "code": 400,
+                        "description": "",
+                        "info": [
+                            "test"
+                        ],
+                        "examples": {},
+                        "headers": {
+                            "info": {
+                                "type": "string",
+                                "description": "test"
+                            }
+                        }
                     }
                 },
                 "parameters": [
                     {
-                        "in": "body",
                         "type": "object",
                         "properties": {
                             "name": {
@@ -61,7 +161,9 @@
                         },
                         "required": [
                             "name"
-                        ]
+                        ],
+                        "in": "body",
+                        "name": ""
                     }
                 ],
                 "tags": [
@@ -72,63 +174,20 @@
                 "deprecated": false
             }
         },
-        "/user/{name}": {
-            "get": {
-                "responses": {},
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "name",
-                        "type": "string",
-                        "enum": [
-                            "math",
-                            "gab"
-                        ],
-                        "required": true
-                    }
-                ],
-                "tags": [
-                    "user"
-                ],
-                "schemes": [
-                    "test"
-                ],
-                "description": "Get user by name\nUser is so strong\nsuper process\nverif if input is odd",
-                "deprecated": false
-            }
-        },
-        "/posts": {
-            "get": {
-                "responses": {},
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "page",
-                        "type": "number",
-                        "example": 15
-                    }
-                ],
-                "tags": [],
-                "schemes": [],
-                "description": "",
-                "deprecated": false
-            }
-        },
         "/user/{id}": {
             "delete": {
                 "responses": {},
                 "parameters": [
                     {
-                        "in": "path",
-                        "name": "id",
                         "type": "number",
                         "example": 0,
-                        "required": true
+                        "in": "path",
+                        "name": "id"
                     },
                     {
-                        "in": "header",
-                        "name": "isAdmin",
-                        "type": "boolean"
+                        "type": "boolean",
+                        "in": "headers",
+                        "name": "isAdmin"
                     }
                 ],
                 "tags": [

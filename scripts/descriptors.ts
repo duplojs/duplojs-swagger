@@ -15,12 +15,14 @@ export class SwaggerIgnore extends SwaggerDescriptor{
 }
 
 export class SwaggerResponses extends SwaggerDescriptor<SwaggerSchemaResponse>{
-	constructor(value: SwaggerSchemaResponse & {code: number}){
+	constructor(value: SwaggerSchemaResponse & {code: number, info?: string[]}){
 		super(value);
 		this.code = `${value.code}`;
+		this.info = value.info || [];
 	}
 
 	code: string;
+	info: string[];
 }
 
 export class SwaggerParameter extends SwaggerDescriptor<SwaggerSchemaParameter>{

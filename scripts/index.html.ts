@@ -1,4 +1,4 @@
-export default /* html */`
+export default (url: string) => /* html */`
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +14,7 @@ export default /* html */`
 <script>
 	window.onload = () => {
 		window.ui = SwaggerUIBundle({
-			url: "{url}",
+			url: "${url}",
 			dom_id: "#swagger-ui",
 		});
 	};

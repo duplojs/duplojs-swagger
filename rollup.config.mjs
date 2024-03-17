@@ -7,13 +7,13 @@ export default defineConfig([
 		input: "scripts/index.ts",
 		output: [
 			{
-				file: "dist/swagger.mjs",
+				file: "dist/index.mjs",
 				format: "esm"
 			},
 			{
-				file: "dist/swagger.cjs",
+				file: "dist/index.cjs",
 				format: "cjs",
-			}
+			},
 		],
 		plugins: [
 			esbuild({
