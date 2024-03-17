@@ -20,17 +20,16 @@ duplo.use(duploSwagger, {
     },
 });
 
-const isOdd = duplo.createChecker(
+const isOdd = duplo
+.createChecker(
     "isOdd", 
-    {
-        handler(input: number, output, options){
-            if(input % 2 == 0) return output("odd", input);
-            else return output("notOdd", input);
-        },
-        outputInfo: ["odd", "notOdd"],
-    }, 
     new SwaggerDescription("verif if input is odd")
-);
+)
+.handler((input: number, output, options) => {
+    if(input % 2 == 1) return output("odd", input);
+    else return output("notOdd", input);
+})
+.build();
 
 duplo.declareRoute("GET", "/user/{id}")
 .extract({
