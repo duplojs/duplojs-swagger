@@ -12,12 +12,12 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-	"./globals": {
+    "./globals": {
       "types": "./globals.d.ts"
-	}
+    }
   },
   "files": [
-	"globals.d.ts",
+    "globals.d.ts",
     "dist",
     "types"
   ],
@@ -26,20 +26,20 @@
   },
   "scripts": {
     "build": "rollup --config && npx tsc -p tsconfig.build.json && npm run generate:type",
-	"dev": "node --require sucrase/register test --swagger",
-	"test:types": "tsc",
-	"generate:type": "node --require sucrase/register scripts/generateType.ts"
+    "dev": "node --require sucrase/register test --swagger",
+    "test:types": "tsc",
+    "generate:type": "node --require sucrase/register scripts/generateType.ts"
   },
   "dependencies": {
     "@anatine/zod-openapi": "^2.2.1",
     "@duplojs/duplojs": ">=1.1.12 <2.0.0",
     "@duplojs/editor-tools": ">=1.1.2 <2.0.0",
-	"@duplojs/multipart": ">=1.0.0 <2.0.0",
-	"@duplojs/what-was-sent": ">=1.1.0 <2.0.0",
+    "@duplojs/multipart": ">=1.0.0 <2.0.0",
+    "@duplojs/what-was-sent": ">=1.1.0 <2.0.0",
     "@types/swagger-schema-official": "^2.0.25"
   },
   "devDependencies": {
-	"@duplojs/worker-testing": "^0.2.6",
+    "@duplojs/worker-testing": "^0.2.6",
     "@rollup/plugin-json": "^6.0.1",
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
