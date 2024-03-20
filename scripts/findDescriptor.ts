@@ -3,10 +3,10 @@ import {duploFindManyDesc} from "@duplojs/editor-tools";
 import {generateSchema} from "@anatine/zod-openapi";
 import {SwaggerDescriptor, SwaggerIgnoreInheritDescriptor, SwaggerParameter} from "./descriptors";
 
-export const typeSwaggerParameter: Record<string, string> = {
+export const parameterMapper: Record<string, string> = {
 	query: "query",
 	params: "path",
-	headers: "headers",
+	headers: "header",
 };
 
 export function findDescriptor(
@@ -48,7 +48,7 @@ export function findDescriptor(
 				//@ts-ignore
 				descriptors.push(new SwaggerParameter({
 					...generateSchema(zodSchema),
-					in: typeSwaggerParameter[key] as any,
+					in: parameterMapper[key] as any,
 					name,
 				}));
 			});
