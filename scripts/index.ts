@@ -1,16 +1,16 @@
 import {DuploConfig, DuploInstance, Request, zod} from "@duplojs/duplojs";
+import {IHaveSentThis} from "@duplojs/what-was-sent";
 import {Spec as SwaggerSchemaSpec, Response as SwaggerSchemaResponse, Operation as SwaggerSchemaOperation, Schema} from "swagger-schema-official";
 import {extendZodWithOpenApi, generateSchema} from "@anatine/zod-openapi";
-import {IHaveSentThis} from "@duplojs/what-was-sent";
+import "@anatine/zod-openapi";
 
+import {readFileSync, writeFileSync} from "fs";
 import packageJson from "../package.json";
 import indexHtml from "./index.html";
-import {readFileSync, writeFileSync} from "fs";
 import {SwaggerDeprecated, SwaggerDescription, SwaggerIgnore, SwaggerOperation, SwaggerParameter, SwaggerResponses, SwaggerSchemes, SwaggerTag} from "./descriptors";
 import {findDescriptor} from "./findDescriptor";
-
-export * from "./descriptors";
 import * as descriptors from "./descriptors";
+export * from "./descriptors";
 
 declare module "@duplojs/duplojs" {
 	interface Plugins {
