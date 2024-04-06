@@ -34,7 +34,7 @@ export function findDescriptor(
 						: zod.object(duplose.extracted.body as Record<string, zod.ZodType>)
 				),
 				in: "body",
-				name: "",
+				name: "body",
 			}));
 		}
 

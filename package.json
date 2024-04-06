@@ -6,11 +6,12 @@
   "repository": "https://github.com/duplojs/duplojs-swagger",
   "license": "ISC",
   "keywords": [],
-  "types": "./types/scripts/index.d.ts",
+  "types": "./types/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+	  "types": "./types/index.d.ts"
     },
     "./globals": {
       "types": "./globals.d.ts"
@@ -50,6 +51,6 @@
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-esbuild": "^5.0.0",
     "sucrase": "^3.34.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.4.2"
   }
 }
