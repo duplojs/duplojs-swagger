@@ -163,7 +163,7 @@
                             "name"
                         ],
                         "in": "body",
-                        "name": ""
+                        "name": "body"
                     }
                 ],
                 "tags": [
@@ -186,7 +186,7 @@
                     },
                     {
                         "type": "boolean",
-                        "in": "headers",
+                        "in": "header",
                         "name": "isAdmin"
                     }
                 ],

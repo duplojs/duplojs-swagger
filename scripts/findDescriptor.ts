@@ -39,7 +39,7 @@ export function findDescriptor(
 		}
 
 		Object.entries(duplose.extracted)
-		.filter(([key]) => key !== "body")
+		.filter(([key]) => !!parameterMapper[key])
 		.forEach(([key, value]) => {
 			if(value instanceof zod.ZodType) return;
 
