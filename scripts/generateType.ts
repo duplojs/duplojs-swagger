@@ -9,7 +9,7 @@ writeFileSync(
 	`
 export {};
 declare global {
-	${Object.keys(d).map(v => `const ${v}: typeof import("./types/scripts/descriptors.d.ts")["${v}"]`).join(";\n\t")};
+	${Object.keys(d).map(v => `const ${v}: typeof import("./types/descriptors.d.ts")["${v}"]`).join(";\n\t")};
 }
 `
 );
